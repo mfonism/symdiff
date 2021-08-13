@@ -46,3 +46,8 @@ def test_term_equality(coeff, var, pow):
 
     assert C(coeff) != Constant(coeff)
     assert T(coeff, var, pow) != Term(coeff, var, pow)
+
+
+@pytest.mark.parametrize("coeff", (0, 1, 2))
+def test_differentiation_of_constant(coeff):
+    assert Constant(coeff).differentiate() == Constant(0)

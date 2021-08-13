@@ -45,3 +45,6 @@ class Constant:
 
     def is_constant(self):
         return True
+
+    def differentiate(self):
+        return Constant(0)
