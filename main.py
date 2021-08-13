@@ -32,9 +32,6 @@ class Term:
             and self.power == other.power
         )
 
-    def is_constant(self):
-        return False
-
 
 class Constant:
     def __init__(self, value: int):
@@ -44,9 +41,6 @@ class Constant:
         if not isinstance(other, Constant):
             return False
         return self.value == other.value
-
-    def is_constant(self):
-        return True
 
     def differentiate(self):
         return Constant(0)
