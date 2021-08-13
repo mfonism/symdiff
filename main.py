@@ -14,6 +14,8 @@ class Term:
             return Constant(0)
         if power == 0:
             return Constant(coefficient)
+        if coefficient == 1 and power == 1:
+            return Line(variable)
         return Term(coefficient, variable, power)
 
     def __init__(self, coefficient: int, variable: str, power: int):
@@ -48,3 +50,13 @@ class Constant:
 
     def differentiate(self):
         return Constant(0)
+
+
+class Line:
+    def __init__(self, variable: str):
+        self.variable = variable
+
+    def __eq__(self, other):
+        if not isinstance(other, Line):
+            return False
+        return self.variable == other.variable
