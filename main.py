@@ -47,3 +47,6 @@ class Term:
         if self.is_axis():
             return self.var
         return f"{self.var}^{self.pow}"
+
+    def __repr__(self):
+        return str(self)
