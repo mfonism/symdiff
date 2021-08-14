@@ -91,3 +91,60 @@ def test_axial_lines_differentiate_into_constants(coeff, var, pow):
     term = Term(coeff=coeff, var=var, pow=pow)
 
     assert term.differentiate().is_constant()
+
+
+@pytest.mark.parametrize("coeff", (0,))
+@pytest.mark.parametrize("var", ("x", "y", "z"))
+@pytest.mark.parametrize("pow", (1, 2, 3))
+def test_string_representation_of_term_with_coeff_zero(coeff, var, pow):
+    term = Term(coeff=coeff, var=var, pow=pow)
+
+    assert str(term) == "0"
+
+
+@pytest.mark.parametrize("coeff", (1, 2, 3, 4))
+@pytest.mark.parametrize("var", ("x", "y", "z"))
+@pytest.mark.parametrize("pow", (0, None))
+def test_string_representation_of_constant(coeff, var, pow):
+    term = Term(coeff=coeff, var=var, pow=pow)
+
+    assert term.is_constant()
+    assert str(term) == str(coeff)
+
+
+@pytest.mark.parametrize("coeff", (1,))
+@pytest.mark.parametrize("var", ("x", "y", "z"))
+@pytest.mark.parametrize("pow", (1,))
+def test_string_representation_of_unscaled_axial_line(coeff, var, pow):
+    term = Term(coeff=coeff, var=var, pow=pow)
+
+    assert term.is_axial_line()
+    assert str(term) == var
+
+
+@pytest.mark.parametrize("coeff", (2, 3, 4))
+@pytest.mark.parametrize("var", ("x", "y", "z"))
+@pytest.mark.parametrize("pow", (1,))
+def test_string_representation_of_scaled_axial_line(coeff, var, pow):
+    term = Term(coeff=coeff, var=var, pow=pow)
+
+    assert term.is_axial_line()
+    assert str(term) == str(coeff) + var
+
+
+@pytest.mark.parametrize("coeff", (1,))
+@pytest.mark.parametrize("var", ("x", "y", "z"))
+@pytest.mark.parametrize("pow", (2, 3, 4))
+def test_string_representation_x_pow_n(coeff, var, pow):
+    term = Term(coeff=coeff, var=var, pow=pow)
+
+    assert str(term) == var + "^" + str(pow)
+
+
+@pytest.mark.parametrize("coeff", (2, 3, 4))
+@pytest.mark.parametrize("var", ("x", "y", "z"))
+@pytest.mark.parametrize("pow", (2, 3, 4))
+def test_string_representation(coeff, var, pow):
+    term = Term(coeff=coeff, var=var, pow=pow)
+
+    assert str(term) == str(coeff) + var + "^" + str(pow)

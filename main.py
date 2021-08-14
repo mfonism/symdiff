@@ -30,3 +30,20 @@ class Term:
         if self.is_constant():
             return Term(coeff=0, var=self.var, pow=None)
         return Term(coeff=self.coeff * self.pow, var=self.var, pow=self.pow - 1)
+
+    def __str__(self):
+        if self.coeff == 0:
+            return "0"
+        rest = self._get_formatted_var_and_pow()
+        if self.coeff == 1:
+            return rest
+        if rest == "1":
+            return str(self.coeff)
+        return f"{self.coeff}{rest}"
+
+    def _get_formatted_var_and_pow(self):
+        if self.is_constant():
+            return "1"
+        if self.is_axial_line():
+            return self.var
+        return f"{self.var}^{self.pow}"
