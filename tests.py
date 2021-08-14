@@ -26,7 +26,7 @@ def test_term_is_constant_when_pow_is_zero_or_none(coeff, var, pow):
     term = Term(coeff=coeff, var=var, pow=pow)
 
     assert term.is_constant()
-    assert not term.is_axial_line()
+    assert not term.is_axis()
 
 
 @pytest.mark.parametrize("coeff", (0, 1, 2))
@@ -68,10 +68,10 @@ def test_differentiate_constant(coeff, var, pow):
 @pytest.mark.parametrize("coeff", (0, 1, 2))
 @pytest.mark.parametrize("var", ("x", "y"))
 @pytest.mark.parametrize("pow", (1,))
-def test_term_is_axial_line_when_pow_is_one(coeff, var, pow):
+def test_term_is_axis_when_pow_is_one(coeff, var, pow):
     term = Term(coeff=coeff, var=var, pow=pow)
 
-    assert term.is_axial_line()
+    assert term.is_axis()
     assert not term.is_constant()
 
 
@@ -87,7 +87,7 @@ def test_differentiate(coeff, var, pow):
 @pytest.mark.parametrize("coeff", (0, 1, 2))
 @pytest.mark.parametrize("var", ("x", "y"))
 @pytest.mark.parametrize("pow", (1,))
-def test_axial_lines_differentiate_into_constants(coeff, var, pow):
+def test_axiss_differentiate_into_constants(coeff, var, pow):
     term = Term(coeff=coeff, var=var, pow=pow)
 
     assert term.differentiate().is_constant()
@@ -115,20 +115,20 @@ def test_string_representation_of_constant(coeff, var, pow):
 @pytest.mark.parametrize("coeff", (1,))
 @pytest.mark.parametrize("var", ("x", "y", "z"))
 @pytest.mark.parametrize("pow", (1,))
-def test_string_representation_of_unscaled_axial_line(coeff, var, pow):
+def test_string_representation_of_unscaled_axis(coeff, var, pow):
     term = Term(coeff=coeff, var=var, pow=pow)
 
-    assert term.is_axial_line()
+    assert term.is_axis()
     assert str(term) == var
 
 
 @pytest.mark.parametrize("coeff", (2, 3, 4))
 @pytest.mark.parametrize("var", ("x", "y", "z"))
 @pytest.mark.parametrize("pow", (1,))
-def test_string_representation_of_scaled_axial_line(coeff, var, pow):
+def test_string_representation_of_scaled_axis(coeff, var, pow):
     term = Term(coeff=coeff, var=var, pow=pow)
 
-    assert term.is_axial_line()
+    assert term.is_axis()
     assert str(term) == str(coeff) + var
 
 

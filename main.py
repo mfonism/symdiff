@@ -23,7 +23,7 @@ class Term:
     def is_constant(self):
         return self.pow is None or self.pow == 0
 
-    def is_axial_line(self):
+    def is_axis(self):
         return self.pow == 1
 
     def differentiate(self):
@@ -44,6 +44,6 @@ class Term:
     def _get_formatted_var_and_pow(self):
         if self.is_constant():
             return "1"
-        if self.is_axial_line():
+        if self.is_axis():
             return self.var
         return f"{self.var}^{self.pow}"
