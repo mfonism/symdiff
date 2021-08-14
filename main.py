@@ -22,3 +22,11 @@ class Term:
 
     def is_constant(self):
         return self.pow is None or self.pow == 0
+
+    def is_axial_line(self):
+        return self.pow == 1
+
+    def differentiate(self):
+        if self.is_constant():
+            return Term(coeff=0, var=self.var, pow=None)
+        return Term(coeff=self.coeff * self.pow, var=self.var, pow=self.pow - 1)
